@@ -7,6 +7,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -89,6 +90,18 @@ namespace Business.Concrete
                 return result;
             }
             _productDal.Update(product);
+            return new SuccessResult();
+        }
+        [TransactionScopeAspect]
+        public IResult TransactionTest(Product product)
+        {
+            Add(product);
+            if (product.UnitPrice > 50)
+            {
+                throw new Exception();
+            }
+
+            Add(product);
             return new SuccessResult();
         }
 
