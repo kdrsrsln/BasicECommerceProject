@@ -1,1 +1,16 @@
-<p>product works!</p>
+<table class="table">
+    <tr>
+        <td>Product ID</td>
+        <td>Product Name</td>
+        <td>Category ID</td>
+        <td>Unit Price</td>
+        <td>Units in Stock</td>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{product.productId}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.categoryId}}</td>
+        <td>{{product.unitPrice}}</td>
+        <td>{{product.unitsInStock}}</td>
+    </tr>
+</table>>

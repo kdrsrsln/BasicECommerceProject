@@ -33,7 +33,7 @@ namespace Business.Concrete
         }
 
         
-        [SecuredOperation("product.add")]
+        //[SecuredOperation("product.add")]
         [CacheAspect()]
         [PerformanceAspect(5)]
         public IDataResult<List<Product>> GetAll()
