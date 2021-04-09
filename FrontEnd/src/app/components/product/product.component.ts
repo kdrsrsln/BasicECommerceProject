@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ProductResponseModel } from 'src/app/models/productResponseModel';
-import { HttpClient } from '@angular/common/http'
+import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-product',
@@ -11,14 +11,9 @@ import { HttpClient } from '@angular/common/http'
 export class ProductComponent implements OnInit {
 
   products:Product[] = [];
-  apiUrl = "https://localhost:44354/api/products/getall";
-  productResponseModel:ProductResponseModel = {
-    data : this.products,
-    success:true,
-    message:""
-  };
+  dataLoaded = false;
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private productService : ProductService) { }
 
   ngOnInit(): void {
     console.log("init çalıştı")
@@ -26,7 +21,12 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts(){
-    this.httpClient.get<ProductResponseModel>(this.apiUrl).subscribe((response) => {this.products = response.data});
+    console.log("Api request başlangıcı")
+    this.productService.getProducts().subscribe((response) => {
+      this.products = response.data;
+      this.dataLoaded = true;
+    });
+    console.log("api request bitişi");
   }
 
 }
