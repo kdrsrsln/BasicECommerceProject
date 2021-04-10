@@ -24,7 +24,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             Thread.Sleep(3000);
 
