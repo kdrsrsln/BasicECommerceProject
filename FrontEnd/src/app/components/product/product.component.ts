@@ -16,17 +16,16 @@ export class ProductComponent implements OnInit {
   constructor(private productService : ProductService) { }
 
   ngOnInit(): void {
-    console.log("init çalıştı")
     this.getProducts();
   }
 
   getProducts(){
-    console.log("Api request başlangıcı")
     this.productService.getProducts().subscribe((response) => {
       this.products = response.data;
       this.dataLoaded = true;
+      console.log(response)
     });
-    console.log("api request bitişi");
+  
   }
 
 }
